@@ -70,13 +70,9 @@ public class AlphabetWarGame {
             return "Left side wins!";
 
         } else if (rightStrength > leftStrength) {
-
             return "Right side wins!";
-
         } else {
-
             return "Let's fight again!";
-
         }
 
     }
@@ -85,11 +81,9 @@ public class AlphabetWarGame {
         AlphabetWarGame game = new AlphabetWarGame();
 
 
-        System.out.println(game.AlphabetWar("z"));             // Right side wins!
-
-        System.out.println(game.AlphabetWar("zdqmwpbs"));      // Let's fight again!
-
-        System.out.println(game.AlphabetWar("wwwwwwz"));       // Left side wins!
+        System.out.println(game.AlphabetWar("z"));           
+        System.out.println(game.AlphabetWar("zdqmwpbs"));   
+        System.out.println(game.AlphabetWar("wwwwwwz"));    
 
     }
 }
