@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+public class labTwoFirst {
+    private static int N[];//To store the array of N numbers
+    //int K;//to check the array
+
+    public labTwoFirst(){//constructor created
+         N = new int[5];
+    }
+    public void readArray(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Give an array");
+        for(int i=0;i<N.length;i++){
+            N[i] = scanner.nextInt();
+        }
+        
+    }
+ static int freqAlogorithm(int K){
+        //int K;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter value for K: ");
+        K = scanner.nextInt();
+        int mode = N[0];
+        int freq_max = 0;
+        for(int i=0;i<N.length;i++){
+            int currMark = N[i];
+            int currFrequency = 1;
+            for (int j = i + 1; j < N.length;j++) {
+                if (N[j] == currMark) {
+                    currFrequency++;
+                }
+            }
+            if (currFrequency > freq_max || (currFrequency == freq_max && currMark > mode)) 
+            {
+                mode = currMark;
+                freq_max = currFrequency;
+            }
+            return currFrequency;
+        }
+        return mode;
+
+    }
+    public void displayArray(){
+        for(int i=0;i<N.length;i++){
+            System.out.print(N[i] + " ");
+        }
+    }
+    //WE need to create two variables
+    public static void main(String[] args) {
+        
+        labTwoFirst checker = new labTwoFirst();
+        //System.out.println("Give an array");
+        checker.readArray();
+        labTwoFirst.freqAlogorithm(2);
+        checker.displayArray();
+        //checker.checkIt();
+    }
+}
