@@ -1,58 +1,39 @@
-import java.util.Scanner;
-
-public class labTwoFirst {
-    private static int N[];//To store the array of N numbers
-    //int K;//to check the array
-
-    public labTwoFirst(){//constructor created
-         N = new int[5];
+import java.util.*;
+            public class TopKFrequentNumbers {
+            private static int[] nums;
+            public static void main(String[] args) {
+            int[] array1 = {3, 1, 4, 4, 5, 2, 6, 1};
+            int k1 = 2;
+            findTopKFrequentNumbers(array1, k1);
+        int[] array2 = {7, 10, 11, 5, 2, 5, 5, 7, 11, 8, 9};
+        int k2 = 4;
+        findTopKFrequentNumbers(array2, k2);
     }
-    public void readArray(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Give an array");
-        for(int i=0;i<N.length;i++){
-            N[i] = scanner.nextInt();
-        }
+    public static void findTopKFrequentNumbers(int[] array, int k) {
+        nums = array;
+        Map<Integer, Integer> frequencyMap = new HashMap<>();
         
-    }
- static int freqAlogorithm(int K){
-        //int K;
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter value for K: ");
-        K = scanner.nextInt();
-        int mode = N[0];
-        int freq_max = 0;
-        for(int i=0;i<N.length;i++){
-            int currMark = N[i];
-            int currFrequency = 1;
-            for (int j = i + 1; j < N.length;j++) {
-                if (N[j] == currMark) {
-                    currFrequency++;
-                }
-            }
-            if (currFrequency > freq_max || (currFrequency == freq_max && currMark > mode)) 
-            {
-                mode = currMark;
-                freq_max = currFrequency;
-            }
-            return currFrequency;
+        for (int num : nums) {
+            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
         }
-        return mode;
 
-    }
-    public void displayArray(){
-        for(int i=0;i<N.length;i++){
-            System.out.print(N[i] + " ");
-        }
-    }
-    //WE need to create two variables
-    public static void main(String[] args) {
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>((n1, n2) -> frequencyMap.get(n1) - frequencyMap.get(n2));
         
-        labTwoFirst checker = new labTwoFirst();
-        //System.out.println("Give an array");
-        checker.readArray();
-        labTwoFirst.freqAlogorithm(2);
-        checker.displayArray();
-        //checker.checkIt();
+        for (int num : frequencyMap.keySet()) {
+            minHeap.add(num);
+            if (minHeap.size() > k) {
+                minHeap.poll();
+            }
+        }
+        List<Integer> result = new ArrayList<>();
+        while (!minHeap.isEmpty()) {
+            result.add(minHeap.poll());
+        }
+        Collections.reverse(result);
+        
+        for (int num : result) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
     }
 }
