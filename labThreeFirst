@@ -1,0 +1,52 @@
+import java.util.*;
+class Employee{
+    int employeeId;
+    String employeeName;
+    String designaton;
+
+      void getEmployeeDetails(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the Employee ID: ");
+        employeeId = sc.nextInt();
+        System.out.println("Enter the Employee Name: ");
+        employeeName = sc.nextLine();
+        System.out.println("Enter the Employee designation: ");
+        designaton = sc.nextLine();
+
+    }
+    class HourlyEmployee extends Employee{
+        double hourlyRate;
+        int hoursWorked;
+        void WeeklyEarnings(){
+            double weeklyEarning;
+            weeklyEarning = hourlyRate * hoursWorked;
+        }
+    }
+    class SalariedEmployee extends Employee{
+        double monthlySalary;
+        void WeeklySalary(){
+            double weeklySalary;
+            weeklySalary = monthlySalary/4;
+        }
+    }
+    void calcBonus(){
+        
+
+    }
+    void displayEmployee(String weeklySalary){
+        System.out.println("The Employee Details are: ");
+        System.out.println("Employee ID: " +employeeId);
+        System.out.println("Employee Name: " +employeeName);
+        System.out.println("Designation: " +designaton);
+        System.out.println("The weekly salary for " +employeeName +"is: " +weeklySalary);
+
+    }
+
+    public static void main(String[] args) {
+        Employee emp = new Employee();
+        emp.getEmployeeDetails();
+    }
+
+   
+    
+}
