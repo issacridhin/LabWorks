@@ -1,0 +1,124 @@
+import java.util.Scanner;
+
+abstract class Robber
+{
+    void RobbingClass()
+    {
+        System.out.println("MScAIML");
+    }
+    
+     void MachineLearning()
+     {
+        System.out.println("I Love Machine Learning");
+     }
+    
+}
+
+ class JAVAProfessionalRobber extends Robber
+ {
+    public void  RowHouses()
+    {
+        int arr_size = 4;
+        int[] moneyInEachRowhouse = new int[arr_size];
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the amount of Money for Row House: ");
+        for(int i = 0; i<arr_size; i++)
+        {
+            moneyInEachRowhouse[i] = sc.nextInt();
+        }
+        
+        int n = moneyInEachRowhouse.length;
+        int prevMax = 0;
+        int currMax = moneyInEachRowhouse[0];
+
+        for (int i = 1; i < n; i++) 
+        {
+            int temp = currMax;
+            currMax = Math.max(currMax, prevMax + moneyInEachRowhouse[i]);
+            prevMax = temp;
+        }
+
+        int maxAmount = currMax;
+        System.out.println("Max amount in Row House: " + maxAmount);
+    }
+        
+
+    
+    public void RoundHouses()
+    {
+        int arr_size = 4;
+        int[] moneyInEachRoundhouse = new int[arr_size];
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the amount of Money for Round House: ");
+        for(int i = 0; i<arr_size; i++)
+        {
+            moneyInEachRoundhouse[i] = sc.nextInt();
+        }
+        int n = moneyInEachRoundhouse.length;
+        if (n == 0) 
+        {
+            System.out.println("No houses to rob.");
+            return;
+        }
+        if (n == 1) 
+        {
+            System.out.println("Max amount in Round House: " + moneyInEachRoundhouse[0]);
+            return;
+        }
+
+        int[] maxAmountRobbed = new int[n];
+
+        maxAmountRobbed[0] = moneyInEachRoundhouse[0];
+        maxAmountRobbed[1] = Math.max(moneyInEachRoundhouse[0], moneyInEachRoundhouse[1]);
+
+        for (int i = 2; i < n; i++) 
+        {
+            maxAmountRobbed[i] = Math.max(maxAmountRobbed[i - 1], maxAmountRobbed[i - 2] + moneyInEachRoundhouse[i]);
+        }
+
+        int maxAmount = Math.max(maxAmountRobbed[n - 1], maxAmountRobbed[n - 2]);
+        System.out.println("Max amount in Round House: " + maxAmount);
+    }
+    
+        
+    
+    public void SquareHouse()
+    {
+        
+        int arr_size = 4;
+        int[] moneyInEachSquarehouse = new int[arr_size];
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the amount of Money for Square House: ");
+        for(int i = 0; i<arr_size; i++)
+        {
+            moneyInEachSquarehouse[i] = sc.nextInt();
+        }
+        int n = moneyInEachSquarehouse.length;
+        int robCurrent = moneyInEachSquarehouse[0];
+        int robPrevious = Math.max(moneyInEachSquarehouse[0], moneyInEachSquarehouse[1]);
+
+        for (int i = 2; i < n; i++) 
+        {
+            int currentMax = Math.max(robCurrent + moneyInEachSquarehouse[i], robPrevious);
+            robCurrent = robPrevious;
+            robPrevious = currentMax;
+        }
+        System.out.println("Max amount in Square House: " + robPrevious);
+    
+    }
+    
+    public void RectangleHouse(){}
+}
+public class Robberlab {
+    public static void main(String[] args) 
+    {
+    JAVAProfessionalRobber robb = new JAVAProfessionalRobber();
+    robb.RowHouses();
+    robb.RoundHouses();
+    robb.SquareHouse();        
+    }
+
+
+
+    
+}
